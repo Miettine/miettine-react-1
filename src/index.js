@@ -17,13 +17,28 @@ const Hello = () => {
   )
 }
 
+const PropProgram = (props) => {
+
+  return (
+    <div>
+      <p>Terve, ohjelma! Minä olen {props.name}. Olen {props.age} vuotias.</p>
+    </div>
+  )
+}
+
+
 const App = () => {
+  const name = "Muuttuja";
+  const age = 1;
   return (
     <div>
       <h1>Tervehdys</h1>
       <Hello />
       <Hello />
-      <Hello />
+      <PropProgram name="Lauri" age={20+9}/>
+      <PropProgram name={name} age={age}/>
+      <PropProgram name="Error"/>
+      <PropProgram age={999}/>
     </div>
   )
 }
