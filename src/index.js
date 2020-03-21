@@ -29,7 +29,8 @@ const PropProgram = (props) => {
 const App = () => {
   const name = "Muuttuja";
   const age = 1;
-  return ([
+  return (
+    <>
     <h1>Tervehdys</h1>,
     <Hello />,
     <Hello />,
@@ -37,7 +38,8 @@ const App = () => {
     <PropProgram name={name} age={age}/>,
     <PropProgram name="Error"/>,
     <PropProgram age={9999}/>
-  ])
+    </>
+  )
 }
 
 ReactDOM.render(
