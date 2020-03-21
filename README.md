@@ -1,3 +1,11 @@
+This project is made by Miettine as a practice to learn React. The following material is utilized:
+
+https://fullstackopen-2019.github.io/
+
+What follows was created by the create-react-app -package. I decided not to delete it yet, as I haven't read all of it :D
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
