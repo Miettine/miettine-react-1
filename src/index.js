@@ -26,21 +26,18 @@ const PropProgram = (props) => {
   )
 }
 
-
 const App = () => {
   const name = "Muuttuja";
   const age = 1;
-  return (
-    <div>
-      <h1>Tervehdys</h1>
-      <Hello />
-      <Hello />
-      <PropProgram name="Lauri" age={20+9}/>
-      <PropProgram name={name} age={age}/>
-      <PropProgram name="Error"/>
-      <PropProgram age={999}/>
-    </div>
-  )
+  return ([
+    <h1>Tervehdys</h1>,
+    <Hello />,
+    <Hello />,
+    <PropProgram name="Lauri" age={20+9}/>,
+    <PropProgram name={name} age={age}/>,
+    <PropProgram name="Error"/>,
+    <PropProgram age={9999}/>
+  ])
 }
 
 ReactDOM.render(
