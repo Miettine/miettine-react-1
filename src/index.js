@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const App = () => {
-  const now = new Date()
-  const a = 10
-  const b = 20
+const Hello = () => {
+  const now = new Date();
+  const a = 10;
+  const b = 20;
   return React.createElement(
     'div',
     null,
@@ -14,6 +14,17 @@ const App = () => {
     React.createElement(
       'p', null, a, ' + ', b, ' = ', a + b
     )
+  )
+}
+
+const App = () => {
+  return (
+    <div>
+      <h1>Tervehdys</h1>
+      <Hello />
+      <Hello />
+      <Hello />
+    </div>
   )
 }
 
