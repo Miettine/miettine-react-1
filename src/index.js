@@ -17,29 +17,54 @@ const Hello = () => {
   )
 }
 
-const PropProgram = (props) => {
+const PropProgram = ({ name, age }) => {
+
+  const bornYear = () => new Date().getFullYear() - age
 
   return (
     <div>
-      <p>Terve, ohjelma! Minä olen {props.name}. Olen {props.age} vuotias.</p>
+      <p>Terve, ohjelma! Minä olen {name}. Olen {age} vuotias. Synnyin vuonna {bornYear()}</p>
     </div>
   )
+}
+
+const Props = ({ greeters }) => {
+
+  let components = [];
+  greeters.forEach( ({name, age}) => {
+    components.push(<PropProgram name={name} age={age}/>)
+  });
+  return components;
+}
+
+const Header = ({title}) => {
+  return ( <h1>{title}</h1> )
 }
 
 const App = () => {
   const name = "Muuttuja";
   const age = 1;
-  return (
-    <>
-    <h1>Tervehdys</h1>,
-    <Hello />,
-    <Hello />,
-    <PropProgram name="Lauri" age={20+9}/>,
-    <PropProgram name={name} age={age}/>,
-    <PropProgram name="Error"/>,
-    <PropProgram age={9999}/>
-    </>
-  )
+
+  const greeters = [
+    {
+      name:"Lauri", 
+      age: 20+9
+    },
+    {
+      name:name, 
+      age: age
+    },
+    {
+      name:"Error", 
+      age: 9999
+    }
+  ]
+
+  return (<>
+    <Header title="Greetings" />
+    <Hello />
+    <Props greeters={greeters}/>
+    </>)
 }
 
 ReactDOM.render(
