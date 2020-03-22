@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 const Hello = () => {
@@ -44,6 +44,10 @@ const Header = ({title}) => {
   return ( <h1>{title}</h1> )
 }
 
+const Timer = ({counter}) => {
+  return ( <div>Olet vieraillut sivulla {counter} sekuntia</div> )
+}
+
 const App = () => {
   const name = "Muuttuja";
   const age = 1;
@@ -63,10 +67,18 @@ const App = () => {
     }
   ]
 
+  const [ counter, setCounter ] = useState(0)
+
+  setTimeout(
+    () => setCounter(counter + 1),
+    1000
+  )
+
   return (<>
     <Header title="Greetings" />
     <Hello />
     <Props greeters={greeters}/>
+    <Timer counter={counter}/>
     </>)
 }
 
