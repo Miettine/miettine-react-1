@@ -75,11 +75,28 @@ const App = () => {
   )
 
   return (<>
-    <Header title="Greetings" />
+    <Header title="Tervehdys" />
     <Hello />
     <Props greeters={greeters}/>
     <Timer counter={counter}/>
+    <CounterButton/>
     </>)
+}
+
+const CounterButton = () => {
+
+  const [ counter, setCounter ] = useState(0);
+
+  const handleClick = () => setCounter(counter + 1);
+  
+
+  return ( 
+    <div>
+    <button onClick={handleClick}>
+      {counter} Plussaa!
+    </button>
+  </div>
+  )
 }
 
 ReactDOM.render(
