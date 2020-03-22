@@ -87,14 +87,16 @@ const CounterButton = () => {
 
   const [ counter, setCounter ] = useState(0);
 
-  const handleClick = () => setCounter(counter + 1);
+  const setToValue = (value) => setCounter(value);
   
-
   return ( 
     <div>
-    <button onClick={handleClick}>
+    <button onClick={() => setToValue(counter + 1)}>
       {counter} Plussaa!
     </button>
+    <button onClick={() => setToValue(0)}>
+        Nollaa
+      </button>
   </div>
   )
 }
