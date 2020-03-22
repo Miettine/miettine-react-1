@@ -19,11 +19,14 @@ const Hello = () => {
 
 const PropProgram = ({ name, age }) => {
 
-  const bornYear = () => new Date().getFullYear() - age
+  const formattedBornYear = () => {
+    const numberOfYears = new Date().getFullYear() - age;
+    return numberOfYears >= 0 ? numberOfYears : -numberOfYears + " eKr.";
+  }
 
   return (
     <div>
-      <p>Terve, ohjelma! Minä olen {name}. Olen {age} vuotias. Synnyin vuonna {bornYear()}</p>
+      <p>Terve, ohjelma! Minä olen {name}. Olen {age} vuotias. Synnyin vuonna {formattedBornYear()}</p>
     </div>
   )
 }
