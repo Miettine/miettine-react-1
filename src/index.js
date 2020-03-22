@@ -79,27 +79,30 @@ const App = () => {
     <Hello />
     <Props greeters={greeters}/>
     <Timer counter={counter}/>
-    <CounterButton/>
+    <Counter/>
     </>)
 }
 
-const CounterButton = () => {
+const Counter = () => {
 
   const [ counter, setCounter ] = useState(0);
 
   const setToValue = (value) => setCounter(value);
   
-  return ( 
-    <div>
-    <button onClick={() => setToValue(counter + 1)}>
-      {counter} Plussaa!
-    </button>
-    <button onClick={() => setToValue(0)}>
-        Nollaa
-      </button>
-  </div>
-  )
+  return (<>
+    <CounterDisplay counter = {counter}/>
+    <CounterButton caption = {"Plussaa!"} onClick = {() => setToValue(counter + 1)}/>
+    <CounterButton caption = {"Miinusta"} onClick = {() => setToValue(counter - 1)}/>
+    <CounterButton caption = {"Nollaa"} onClick = {() => setToValue(0)}/>
+  </>);
 }
+
+const CounterButton  = ({ caption, onClick }) => 
+<button onClick={onClick}>
+  {caption}
+</button>;
+
+const CounterDisplay = ({ counter }) => <div>{counter}</div>
 
 ReactDOM.render(
   React.createElement(App, null),
