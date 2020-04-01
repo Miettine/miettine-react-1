@@ -117,15 +117,33 @@ const Feedback = () =>{
 
   return (
     <div>
-      <CounterDisplay caption = {"Hyvä: "} counterValue = {good}/>
-      <CounterDisplay caption = {"Ok: "} counterValue = {neutral}/>
-      <CounterDisplay caption = {"Huono: "} counterValue = {bad}/>
+      <h2>Palaute</h2>
       <Button caption = {"Hyvä!"} onClick = {() => incrementGood(good + 1)}/>
       <Button caption = {"Ok."} onClick = {() => incrementNeutral(neutral + 1)}/>
       <Button caption = {"Huono! >:("} onClick = {() => incrementBad(bad + 1)}/>
+      <h3>Yhteenveto</h3>
+      <FeedbackDisplay good= {good} neutral={neutral} bad={bad}/>
+      
+     
     </div>
   )
 }
+
+const FeedbackDisplay = ({good, neutral, bad}) =>{
+
+  const hasFeedback = good > 0 || neutral > 0 || bad > 0;
+
+  if (!hasFeedback){
+    return (<>No feedback yet</>)
+  }
+
+  return(<>
+  <CounterDisplay caption = {"Hyvä: "} counterValue = {good}/>
+  <CounterDisplay caption = {"Ok: "} counterValue = {neutral}/>
+  <CounterDisplay caption = {"Huono: "} counterValue = {bad}/>
+  </>);
+}
+
 
 ReactDOM.render(
   React.createElement(App, null),
