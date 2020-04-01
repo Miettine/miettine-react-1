@@ -80,6 +80,7 @@ const App = () => {
     <Props greeters={greeters}/>
     <Timer counter={counter}/>
     <Counter/>
+    <Feedback/>
     </>)
 }
 
@@ -90,19 +91,41 @@ const Counter = () => {
   const setToValue = (value) => setCounter(value);
   
   return (<>
-    <CounterDisplay counter = {counter}/>
-    <CounterButton caption = {"Plussaa!"} onClick = {() => setToValue(counter + 1)}/>
-    <CounterButton caption = {"Miinusta"} onClick = {() => setToValue(counter - 1)}/>
-    <CounterButton caption = {"Nollaa"} onClick = {() => setToValue(0)}/>
+    <CounterDisplay counterValue = {counter}/>
+    <Button caption = {"Plussaa!"} onClick = {() => setToValue(counter + 1)}/>
+    <Button caption = {"Miinusta"} onClick = {() => setToValue(counter - 1)}/>
+    <Button caption = {"Nollaa"} onClick = {() => setToValue(0)}/>
   </>);
 }
 
-const CounterButton  = ({ caption, onClick }) => 
+const Button  = ({ caption, onClick }) => 
 <button onClick={onClick}>
   {caption}
 </button>;
 
-const CounterDisplay = ({ counter }) => <div>{counter}</div>
+const CounterDisplay = ({ caption, counterValue }) => <div>{caption} {counterValue}</div>
+
+const Feedback = () =>{
+
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+
+  const incrementGood = (value) => setGood(value);
+  const incrementNeutral = (value) => setNeutral(value);
+  const incrementBad = (value) => setBad(value);
+
+  return (
+    <div>
+      <CounterDisplay caption = {"Hyvä: "} counterValue = {good}/>
+      <CounterDisplay caption = {"Ok: "} counterValue = {neutral}/>
+      <CounterDisplay caption = {"Huono: "} counterValue = {bad}/>
+      <Button caption = {"Hyvä!"} onClick = {() => incrementGood(good + 1)}/>
+      <Button caption = {"Ok."} onClick = {() => incrementNeutral(neutral + 1)}/>
+      <Button caption = {"Huono! >:("} onClick = {() => incrementBad(bad + 1)}/>
+    </div>
+  )
+}
 
 ReactDOM.render(
   React.createElement(App, null),
