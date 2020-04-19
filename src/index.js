@@ -123,7 +123,7 @@ const Feedback = () =>{
       <Button caption = {"Huono! >:("} onClick = {() => incrementBad(bad + 1)}/>
       <h3>Yhteenveto</h3>
       <FeedbackDisplay good= {good} neutral={neutral} bad={bad}/>
-      
+      <Phonebook/>
      
     </div>
   )
@@ -142,6 +142,44 @@ const FeedbackDisplay = ({good, neutral, bad}) =>{
   <CounterDisplay caption = {"Ok: "} counterValue = {neutral}/>
   <CounterDisplay caption = {"Huono: "} counterValue = {bad}/>
   </>);
+}
+
+const Phonebook = () =>{
+  const [ persons, setPersons] = useState([
+    { name: 'Arto Hellas' }
+  ]) 
+  const [ newName, setNewName ] = useState('')
+
+  const addName = (event) => {
+    event.preventDefault()
+    const nameObject = {
+      name: newName
+    }
+    setPersons(persons.concat(nameObject))
+
+    console.log(persons, nameObject);
+    setNewName('')
+  }
+
+  const handleNameChange = (event) => {
+    
+    setNewName(event.target.value)
+  }
+
+  return(<div>
+    <h2>Puhelinluettelo</h2>
+    <form onSubmit={addName}>
+      <div>
+        nimi: <input value={newName} onChange={handleNameChange}/>
+      </div>
+      <div>
+      <button type="submit">Tallenna</button>
+        <div>debug: {newName}</div>
+      </div>
+    </form>
+    <h2>Numerot</h2>
+
+  </div>);
 }
 
 
