@@ -150,8 +150,8 @@ const Phonebook = () =>{
       number: '555 123 123' }
   ]);
   const [ newName, setNewName ] = useState('');
-
   const [ newNumber, setNewNumber ] = useState('')
+  const [ newFilter, setNewFilter ] = useState('');
 
   const addPerson = (event) => {
     event.preventDefault();
@@ -185,7 +185,9 @@ const Phonebook = () =>{
   const handleNumberChange = (event) => {
     setNewNumber(event.target.value)
   }
-
+  const handleFilterChange = (event) => {
+    setNewFilter(event.target.value)
+  }
   return(<div>
     <h2>Puhelinluettelo</h2>
     <form onSubmit={addPerson}>
@@ -200,12 +202,20 @@ const Phonebook = () =>{
       </div>
     </form>
     <h2>Numerot</h2>
-    <Contacts persons = {persons}/>
+      rajaa: <input value={newFilter} onChange={handleFilterChange}/>
+      <Contacts persons={persons} filter={newFilter}/>
   </div>);
 }
 
-const Contacts = ({persons})=>{
-    return (<>{persons.map(person => <Contact name={person.name} number={person.number}/>)}</>);
+const Contacts = ({persons, filter})=>{
+  let listOfPersons;
+
+  if (filter)
+    listOfPersons = persons.filter( person => person.name.toLowerCase().includes(filter.toLowerCase()) || person.number.includes(filter));
+  else 
+    listOfPersons = persons;
+
+  return (<>{listOfPersons.map(person => <Contact name={person.name} number={person.number}/>)}</>);
 }
 
 const Contact = ({name, number}) =>{
