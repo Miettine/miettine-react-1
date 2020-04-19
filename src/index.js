@@ -151,14 +151,19 @@ const Phonebook = () =>{
   const [ newName, setNewName ] = useState('')
 
   const addName = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const nameObject = {
       name: newName
     }
-    console.log(persons);
-    const newPersons = persons.concat(nameObject)
+
+    const foundDuplicate = persons.find(element => element.name == newName);
+    if (foundDuplicate){
+      window.alert(`Nimi ${foundDuplicate.name} on jo lisätty puhelinluetteloon.`);
+      return;
+    }
+    const newPersons = persons.concat(nameObject);
     setPersons(newPersons);
-    console.log(newPersons);
+
     setNewName('')
   }
 
