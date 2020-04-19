@@ -81,6 +81,7 @@ const App = () => {
     <Timer counter={counter}/>
     <Counter/>
     <Feedback/>
+    <Phonebook/>
     </>)
 }
 
@@ -123,7 +124,6 @@ const Feedback = () =>{
       <Button caption = {"Huono! >:("} onClick = {() => incrementBad(bad + 1)}/>
       <h3>Yhteenveto</h3>
       <FeedbackDisplay good= {good} neutral={neutral} bad={bad}/>
-      <Phonebook/>
      
     </div>
   )
@@ -155,9 +155,10 @@ const Phonebook = () =>{
     const nameObject = {
       name: newName
     }
-    setPersons(persons.concat(nameObject))
-
-    console.log(persons, nameObject);
+    console.log(persons);
+    const newPersons = persons.concat(nameObject)
+    setPersons(newPersons);
+    console.log(newPersons);
     setNewName('')
   }
 
@@ -178,7 +179,17 @@ const Phonebook = () =>{
       </div>
     </form>
     <h2>Numerot</h2>
+  <Contacts names = {persons}/>
+  </div>);
+}
 
+const Contacts = ({names})=>{
+    return (<>{names.map(name => <div>{name.name}</div>)}</>);
+}
+
+const Contact = ({name}) =>{
+  return(<div>
+    - {name}
   </div>);
 }
 
