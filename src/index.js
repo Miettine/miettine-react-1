@@ -147,54 +147,69 @@ const FeedbackDisplay = ({good, neutral, bad}) =>{
 const Phonebook = () =>{
   const [ persons, setPersons] = useState([
     { name: 'Arto Hellas' }
-  ]) 
-  const [ newName, setNewName ] = useState('')
+  ]);
+  const [ newName, setNewName ] = useState('');
 
-  const addName = (event) => {
+  const [ newNumber, setNewNumber ] = useState('')
+
+  const addPerson = (event) => {
     event.preventDefault();
-    const nameObject = {
-      name: newName
-    }
 
-    const foundDuplicate = persons.find(element => element.name == newName);
+    const foundDuplicate = persons.find(element => element.name === newName || element.number === newNumber);
     if (foundDuplicate){
-      window.alert(`Nimi ${foundDuplicate.name} on jo lisätty puhelinluetteloon.`);
-      return;
+      if (foundDuplicate.name === newName) {
+        window.alert(`Nimi ${foundDuplicate.name} on jo lisätty puhelinluetteloon.`);
+        return;
+      } else if (foundDuplicate.number === newNumber) {
+        window.alert(`Numero ${foundDuplicate.number} on jo lisätty puhelinluetteloon (${foundDuplicate.name}).`);
+        return;
+      }
     }
-    const newPersons = persons.concat(nameObject);
-    setPersons(newPersons);
 
-    setNewName('')
+    const personObject = {
+      name: newName,
+      number: newNumber
+    }
+    const newPersonsArray = persons.concat(personObject);
+    setPersons(newPersonsArray);
+
+    setNewName('');
+    setNewNumber('');
   }
 
   const handleNameChange = (event) => {
-    
     setNewName(event.target.value)
+  }
+
+  const handleNumberChange = (event) => {
+    setNewNumber(event.target.value)
   }
 
   return(<div>
     <h2>Puhelinluettelo</h2>
-    <form onSubmit={addName}>
+    <form onSubmit={addPerson}>
       <div>
         nimi: <input value={newName} onChange={handleNameChange}/>
       </div>
       <div>
+        puhelinnumero: <input value={newNumber} onChange={handleNumberChange}/>
+      </div>
+      <div>
       <button type="submit">Tallenna</button>
-        <div>debug: {newName}</div>
       </div>
     </form>
     <h2>Numerot</h2>
-  <Contacts persons = {persons}/>
+    <Contacts persons = {persons}/>
   </div>);
 }
 
 const Contacts = ({persons})=>{
-    return (<>{persons.map(person => <Contact name = {person.name}/>)}</>);
+    return (<>{persons.map(person => <Contact name={person.name} number={person.number}/>)}</>);
 }
 
-const Contact = ({name}) =>{
+const Contact = ({name, number}) =>{
   return(<div>
-    - {name}
+    - {name} / {number}
   </div>);
 }
 
