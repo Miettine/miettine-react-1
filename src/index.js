@@ -146,7 +146,8 @@ const FeedbackDisplay = ({good, neutral, bad}) =>{
 
 const Phonebook = () =>{
   const [ persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas',
+      number: '555 123 123' }
   ]);
   const [ newName, setNewName ] = useState('');
 
