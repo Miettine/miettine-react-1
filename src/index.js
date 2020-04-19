@@ -179,12 +179,12 @@ const Phonebook = () =>{
       </div>
     </form>
     <h2>Numerot</h2>
-  <Contacts names = {persons}/>
+  <Contacts persons = {persons}/>
   </div>);
 }
 
-const Contacts = ({names})=>{
-    return (<>{names.map(name => <div>{name.name}</div>)}</>);
+const Contacts = ({persons})=>{
+    return (<>{persons.map(person => <Contact name = {person.name}/>)}</>);
 }
 
 const Contact = ({name}) =>{
